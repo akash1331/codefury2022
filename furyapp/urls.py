@@ -23,5 +23,6 @@ urlpatterns = [
     path('feedApi/',feedApi.as_view(),name='feedApi'),
     path('feedApi/<int:pk>/',views.feedindi, name = 'indi'),
     path('investorsapi/<str:pk>/',views.inverstor_indi, name = 'indi'), #use email as pk
+    path('tasks/',taskview.as_view(),name='task'),
 
 ]

@@ -9,4 +9,7 @@ class startupdataAdminSite(admin.ModelAdmin):
 admin.site.register(investors)
 admin.site.register(startup_data,startupdataAdminSite)
 admin.site.register(startup_post)
+admin.site.register(tasks)
+admin.site.register(startup_user)
+
     

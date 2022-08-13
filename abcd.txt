@@ -1,0 +1,8 @@
+investors list
+schedules(to-do list)
+total funds raised
+indiviudal distribution
+crowd funding
+to an investor top startups with maximum funding
+to a startup shows the funding it has got
+investment post req

@@ -15,8 +15,23 @@ class startup_dataSerializer(serializers.ModelSerializer):
     class Meta():
         model = startup_data
         fields = '__all__'
+class startup_dataSerializer(serializers.ModelSerializer):
+    class Meta():
+        model = startup_data
+        fields = ['fund']
 
 class startup_postSerializer(serializers.ModelSerializer):
     class Meta():
         model = startup_post
+        fields = '__all__'
+
+class inverstSerializer(serializers.ModelSerializer):
+    class Meta():
+        model = investors
+        fields = ['money']
+
+
+class taskserializer(serializers.ModelSerializer):
+    class Meta():
+        model = tasks
         fields = '__all__'
