@@ -44,7 +44,7 @@ class inverstorsApi(APIView):               #investors list get and post request
         return Response(serializer.errors,status = status.HTTP_400_BAD_REQUEST)
 
 
-class feedApi(APIView):               #startup_data get and post request
+class feedApi(APIView):               #startup_post get and post request
     def get(self,request):
         object = startup_post.objects.all()
         serializer = startup_postSerializer(object,many=True)
@@ -52,6 +52,24 @@ class feedApi(APIView):               #startup_data get and post request
 
     def post(self,request):
         serializer = startup_postSerializer(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status = status.HTTP_201_CREATED)
+        return Response(serializer.errors,status = status.HTTP_400_BAD_REQUEST)
+
+    def delete(self,request,id):
+        article = self.get_object(id)
+        article.delete()
+        return Response(status = status.HTTP_204_NO_CONTENT)
+
+class startupdata(APIView):               #startup_data get and post request
+    def get(self,request):
+        object = startup_data.objects.all()
+        serializer = startup_dataSerializer(object,many=True)
+        return Response(serializer.data)
+
+    def post(self,request):
+        serializer = startup_dataSerializer(data = request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data,status = status.HTTP_201_CREATED)
@@ -123,16 +141,17 @@ class fund(APIView):
             return startup_data.objects.get(pk = pk)
         except startup_data.DoesNotExist:
             return HttpResponse(status = status.HTTP_404_NOT_FOUND)
+            
     def post(self,request):
-        serializer = startup_dataSerializer(data = request.data)
+        serializer = startup_fundSerializer(data = request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data,status = status.HTTP_201_CREATED)
         return Response(serializer.errors,status = status.HTTP_400_BAD_REQUEST)
         
     def put(self,request,id):
-        fund  = self.get_object(pk)
-        serializer = startup_dataSerializer(money,data = request.data)
+        funds  = self.get_object(pk)
+        serializer = startup_fundSerializer(funds,data = request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

@@ -19,10 +19,15 @@ from .views import *
 from . import views
 urlpatterns = [
     path('',inverstorsApi.as_view(), name='home'),
-    path('investorsapi/',inverstorsApi.as_view(),name='inverstorsApi'),
-    path('feedApi/',feedApi.as_view(),name='feedApi'),
-    path('feedApi/<int:pk>/',views.feedindi, name = 'indi'),
-    path('investorsapi/<str:pk>/',views.inverstor_indi, name = 'indi'), #use email as pk
-    path('tasks/',taskview.as_view(),name='task'),
+    path('investorsapi/',inverstorsApi.as_view(),name='inverstorsApi'), #get and post request of investors data
+    path('fund/',fund.as_view(),name='fund'),  #to show total fund of an individual startup
+    path('fund/<int:pk>',fund.as_view(),name='fund'),  #to put and get total fund of an individual startup
+    path('invest/',invest.as_view(),name='invest'),  #to show total fund of an individual startup
+    path('invest/<int:pk>',invest.as_view(),name='invest'),  #to put and get total fund of an individual startup
+    path('startupdata/<int:pk>',startupdata.as_view(),name='startupdata'), #startup data complete
+    path('feedApi/',feedApi.as_view(),name='feedApi'), #startup posts get post delete
+    path('feedApi/<int:pk>/',views.feedindi, name = 'indi'), #startup post put
+    path('investorsapi/<str:pk>/',views.inverstor_indi, name = 'indi'), #use email as pk    #get investors data
+    path('tasks/',taskview.as_view(),name='task'), #task given by a company
 
 ]
